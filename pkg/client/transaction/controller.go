@@ -97,6 +97,7 @@ func (C *Controller) signTxForSending() {
 			return
 		}
 		C.tx.Signature = append(C.tx.Signature, signature)
+		signedTransaction = C.tx
 	} else {
 		signedTransaction, err =
 			C.sender.ks.SignTx(*C.sender.account, C.tx)
