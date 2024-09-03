@@ -52,6 +52,7 @@ func NewController(
 	client *client.GrpcClient,
 	senderKs *keystore.KeyStore,
 	senderAcct *keystore.Account,
+	privateKey *btcec.PrivateKey,
 	tx *core.Transaction,
 	options ...func(*Controller),
 ) *Controller {
@@ -64,8 +65,9 @@ func NewController(
 			ks:      senderKs,
 			account: senderAcct,
 		},
-		tx:       tx,
-		Behavior: behavior{false, Software, 0},
+		privateKey: privateKey,
+		tx:         tx,
+		Behavior:   behavior{false, Software, 0},
 	}
 	for _, option := range options {
 		option(ctrlr)
