@@ -12,6 +12,8 @@ import (
 	"github.com/alexvec/gotron-sdk/pkg/ledger"
 	"github.com/alexvec/gotron-sdk/pkg/proto/api"
 	"github.com/alexvec/gotron-sdk/pkg/proto/core"
+	"github.com/btcsuite/btcd/btcec/v2"
+	"github.com/ethereum/go-ethereum/crypto"
 	proto "google.golang.org/protobuf/proto"
 )
 
@@ -33,6 +35,7 @@ type Controller struct {
 	client         *client.GrpcClient
 	tx             *core.Transaction
 	sender         sender
+	privateKey     *btcec.PrivateKey
 	Behavior       behavior
 	Result         *api.Return
 	Receipt        *core.TransactionInfo
@@ -74,8 +77,28 @@ func (C *Controller) signTxForSending() {
 	if C.executionError != nil {
 		return
 	}
-	signedTransaction, err :=
-		C.sender.ks.SignTx(*C.sender.account, C.tx)
+	var signedTransaction *core.Transaction
+	var err error
+	if C.privateKey != nil {
+		rawData, err := C.GetRawData()
+		if err != nil {
+			C.executionError = err
+			return
+		}
+		h256h := sha256.New()
+		h256h.Write(rawData)
+		hash := h256h.Sum(nil)
+
+		signature, err := crypto.Sign(hash, C.privateKey.ToECDSA())
+		if err != nil {
+			C.executionError = err
+			return
+		}
+		C.tx.Signature = append(C.tx.Signature, signature)
+	} else {
+		signedTransaction, err =
+			C.sender.ks.SignTx(*C.sender.account, C.tx)
+	}
 	if err != nil {
 		C.executionError = err
 		return
@@ -145,7 +168,9 @@ func (C *Controller) txConfirmation() {
 				return
 			}
 			if start < 0 {
-				C.executionError = fmt.Errorf("could not confirm transaction after %d seconds", C.Behavior.ConfirmationWaitTime)
+				C.executionError = fmt.Errorf(
+					"could not confirm transaction after %d seconds", C.Behavior.ConfirmationWaitTime,
+				)
 				return
 			}
 			time.Sleep(time.Second)
