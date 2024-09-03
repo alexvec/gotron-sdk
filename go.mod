@@ -1,4 +1,4 @@
-module github.com/fbsobreira/gotron-sdk
+module github.com/alexvec/gotron-sdk
 
 go 1.19
 
@@ -48,5 +48,3 @@ require (
 	golang.org/x/text v0.9.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-replace github.com/fbsobreira/gotron-sdk => github.com/alexvec/gotron-sdk v0.0.0-20240903011216-73dbb83a4a75
