@@ -1,9 +1,7 @@
-//go:build !windows
-// +build !windows
-
 package keystore
 
 import (
+	"fmt"
 	"github.com/fbsobreira/gotron-sdk/pkg/address"
 )
 
