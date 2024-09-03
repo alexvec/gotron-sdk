@@ -48,3 +48,5 @@ require (
 	golang.org/x/text v0.9.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+replace github.com/fbsobreira/gotron-sdk => github.com/alexvec/gotron-sdk v0.0.0-20240903010114-c733531be8b2
