@@ -49,4 +49,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/fbsobreira/gotron-sdk => github.com/alexvec/gotron-sdk v0.0.0-20240903010114-c733531be8b2
+replace github.com/fbsobreira/gotron-sdk => github.com/alexvec/gotron-sdk v0.0.0-20240903010534-5691c51b7cd0
