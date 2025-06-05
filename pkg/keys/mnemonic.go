@@ -3,9 +3,9 @@ package keys
 import (
 	"fmt"
 
+	"github.com/alexvec/go-bip39"
 	"github.com/alexvec/gotron-sdk/pkg/keys/hd"
 	"github.com/btcsuite/btcd/btcec/v2"
-	"github.com/tyler-smith/go-bip39"
 )
 
 // FromMnemonicSeedAndPassphrase derive form mnemonic and passphrase at index

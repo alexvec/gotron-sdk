@@ -3,7 +3,7 @@ package mnemonic
 import (
 	"fmt"
 
-	"github.com/tyler-smith/go-bip39"
+	"github.com/alexvec/go-bip39"
 )
 
 var (

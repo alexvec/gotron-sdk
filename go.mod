@@ -3,6 +3,7 @@ module github.com/alexvec/gotron-sdk
 go 1.19
 
 require (
+	github.com/alexvec/go-bip39 v1.1.0
 	github.com/araddon/dateparse v0.0.0-20200409225146-d820a6159ab1
 	github.com/btcsuite/btcd/btcec/v2 v2.2.0
 	github.com/deckarep/golang-set v1.8.0
@@ -16,7 +17,6 @@ require (
 	github.com/shengdoushi/base58 v1.0.0
 	github.com/spf13/cobra v1.0.0
 	github.com/stretchr/testify v1.8.1
-	github.com/tyler-smith/go-bip39 v1.1.0
 	github.com/zondax/hid v0.9.1
 	go.uber.org/zap v1.15.0
 	golang.org/x/crypto v0.9.0

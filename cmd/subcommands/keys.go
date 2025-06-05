@@ -14,11 +14,11 @@ import (
 	"github.com/fatih/color"
 	"golang.org/x/crypto/ssh/terminal"
 
+	"github.com/alexvec/go-bip39"
 	"github.com/alexvec/gotron-sdk/pkg/ledger"
 	"github.com/alexvec/gotron-sdk/pkg/mnemonic"
 	"github.com/alexvec/gotron-sdk/pkg/store"
 	"github.com/spf13/cobra"
-	"github.com/tyler-smith/go-bip39"
 )
 
 const (
